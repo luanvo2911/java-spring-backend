@@ -1,0 +1,5 @@
+tasks:
+- get user, get todo by user id
+- delete user, delete todo
+- insert new user
+
