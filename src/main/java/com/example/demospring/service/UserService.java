@@ -18,6 +18,10 @@ public class UserService {
     return userRepository.findAllUsers();
   }
 
+  public User getUserByID(String id){
+    return userRepository.findUserByID(id);
+  }
+
   public void insertUser(User user){
     userRepository.insertUser(user.id, user.username, user.email);
   }
