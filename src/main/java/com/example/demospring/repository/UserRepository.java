@@ -21,6 +21,8 @@ public interface UserRepository extends JpaRepository<User, String> {
   @Query(value = "SELECT * FROM users WHERE id = :id", nativeQuery = true)
   User findUserByID(String id);
 
+  @Query(value = "SELECT * FROM users WHERE users.username = :username and users.passw = :passw", nativeQuery = true)
+  List<User> login(String username, String passw);
 
   @Modifying
   @Transactional

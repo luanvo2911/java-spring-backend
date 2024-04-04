@@ -18,19 +18,27 @@ public class TodoService {
     return todoRepository.findAllTodos();
   }
 
-  public List<Todo> getTodoByUserID(String id){
-    return todoRepository.findTodosByUserID(id);
+  public Todo getById(Integer id){
+    return todoRepository.findByID(id);
+  }
+
+  public List<Todo> getTodoByUserID(Integer id, Integer page, Integer item_per_page){
+    return todoRepository.findTodosByUserID(id, page, item_per_page);
+  }
+
+  public Integer getTodoTotalByUserID(Integer id){
+    return todoRepository.findTodosTotalByUserID(id);
   }
 
   public void insertTodo(Todo todo){
-    todoRepository.insertTodo(todo.id, todo.user_id, todo.todo, todo.status);
+    todoRepository.insertTodo(todo.user_id, todo.todo, todo.status);
   }
 
   public void updateTodo(Todo todo){
     todoRepository.updateTodo(todo.id, todo.todo, todo.status);
   }
 
-  public int deleteTodoByID(String id){
+  public int deleteTodoByID(Integer id){
     return todoRepository.deleteTodoByID(id);
   }
 

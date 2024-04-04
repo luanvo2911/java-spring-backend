@@ -3,3 +3,9 @@ tasks:
 - delete user, delete todo
 - insert new user
 
+login spring-security:
+username: user
+password: 123456789
+
+login front-end:
+default password:12345678

@@ -1,6 +1,6 @@
 package com.example.demospring.controller;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
+// import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +19,7 @@ import com.example.demospring.service.TodoService;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:8080", "http://localhost:3000"})
+// @CrossOrigin
 @RequestMapping ("/todos")
 public class TodoController {
 
@@ -30,11 +30,21 @@ public class TodoController {
     public List<Todo> getTodo() {
         return todoService.getAllTodo();
     }
-  
+
   @GetMapping(value = "/{id}")
-    public List<Todo> getTodoByUserID(@PathVariable String id){
-      return todoService.getTodoByUserID(id);
+    public Todo getTodoById(@PathVariable Integer id) {
+      return todoService.getById(id);
     }
+  
+  @GetMapping(value = "/{user_id}/{page}/{item_per_page}")
+    public List<Todo> getTodoByUserID(@PathVariable Integer user_id, @PathVariable Integer page, @PathVariable Integer item_per_page){
+      return todoService.getTodoByUserID(user_id, page, item_per_page);
+    }
+
+  @GetMapping(value = "/{user_id}/total")
+  public Integer getTodoTotalByUserID(@PathVariable Integer user_id){
+    return todoService.getTodoTotalByUserID(user_id);
+  }
 
   @PostMapping
     public void insertTodo(@RequestBody Todo todo){
@@ -48,7 +58,7 @@ public class TodoController {
 
   @DeleteMapping(value = "/{id}")
   @ResponseStatus(HttpStatus.OK)
-    public void deleteTodoByID(@PathVariable String id){
+    public void deleteTodoByID(@PathVariable Integer id){
       todoService.deleteTodoByID(id);
     }
 }

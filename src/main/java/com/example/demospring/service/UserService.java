@@ -22,6 +22,10 @@ public class UserService {
     return userRepository.findUserByID(id);
   }
 
+  public boolean authentication(String username, String passw){
+    return userRepository.login(username, passw).size() > 0;
+  }
+
   public void insertUser(User user){
     userRepository.insertUser(user.id, user.username, user.email);
   }

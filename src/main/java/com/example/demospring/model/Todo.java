@@ -19,7 +19,7 @@ public class Todo {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id", table = "todos")
-  public String id;
+  public Integer id;
 
   @Column(name = "username", table = "users")
   public String username;

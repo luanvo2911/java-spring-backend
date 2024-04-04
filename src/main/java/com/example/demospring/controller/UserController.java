@@ -1,6 +1,6 @@
 package com.example.demospring.controller;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
+// import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,12 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.example.demospring.service.UserService;
+import com.example.demospring.model.Auth;
 import com.example.demospring.model.User;
 
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:8080", "http://localhost:3000"})
+// @CrossOrigin
 @RequestMapping("/users")
 public class UserController {
 
@@ -38,9 +39,14 @@ public class UserController {
       userService.insertUser(user);
     }
 
+  @PostMapping("/login")
+  public Boolean authentication(@RequestBody Auth auth) {
+      return userService.authentication(auth.username, auth.passw);
+  }
+  
+
   @DeleteMapping(value = "/{id}")
-    public String deleteUser(@PathVariable String id){
-      int rowDeleted = userService.deleteUserByID(id);
-      return "There are " + rowDeleted + " deleted!";
+    public void deleteUser(@PathVariable String id){
+      userService.deleteUserByID(id);
     }  
 }
